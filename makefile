@@ -1,7 +1,10 @@
 build:
-	python -m pip install -r requirements.txt && dbt deps &
-	npm --prefix ./reports install &
-	meltano install
+	echo "START"; \
+	python -m pip install -r requirements.txt && dbt deps & \
+	npm --prefix ./reports install & \
+	meltano install & \
+	wait; \
+	echo "DONE"
 
 load: 
 	meltano run el
